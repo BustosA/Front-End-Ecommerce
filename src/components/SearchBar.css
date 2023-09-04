@@ -1,0 +1,19 @@
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 50px;
+  padding: 0.2rem 1rem;
+  background-color: white;
+}
+.search input {
+  background-color: transparent;
+  border: none;
+}
+.search button {
+  background-color: transparent;
+  border: none;
+}
+.search svg {
+  color: #fb3b4c;
+}
