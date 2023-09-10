@@ -3,7 +3,7 @@ import EditProduct from "./EditProduct";
 import "./ProductCard.css";
 import { useState } from "react";
 
-function ProductCard({ p, onDelete, onEdit }) {
+function ProductCard({ p, onDelete, onEdit, onAddToCart }) {
   const [isFullDescription, setIsFullDescription] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -28,9 +28,7 @@ function ProductCard({ p, onDelete, onEdit }) {
         <div>
           <p>{p.category}</p>
           <p>{p.price}</p>
-          <button>add to cart</button>
-          <button onClick={() => setIsEditing(true)}>Editar</button>
-          <button onClick={() => onDelete(p.id)}>Eliminar</button>
+          <button onClick={() => onAddToCart(p)}>Añadir al Carrito</button>
         </div>
       </div>
       {isFullDescription ? (
