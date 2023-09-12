@@ -6,19 +6,20 @@ import SearchBar from "./components/SearchBar";
 import Logo from "./components/Logo";
 import Login from "./components/Login";
 import Slider from "./components/Slider";
-import Cart from './components/Cart';
+import Cart from "./components/Cart";
 
 function App() {
   const [products, setProducts] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [cartItems, setCartItems] = useState([]);
+  const [menorAMayor, setMenorAMayor] = useState(true);
 
   const handleAddToCart = (product) => {
-      setCartItems(prevItems => [...prevItems, product]);
+    setCartItems((prevItems) => [...prevItems, product]);
   };
 
   const handleRemoveFromCart = (id) => {
-      setCartItems(prevItems => prevItems.filter(item => item.id !== id));
+    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
   const handleChangeText = (e) => {
@@ -30,15 +31,28 @@ function App() {
   };
 
   const handleEditProduct = (id, updatedProduct) => {
-    setProducts(products.map(p => p.id === id ? { ...p, ...updatedProduct } : p));
+    setProducts(
+      products.map((p) => (p.id === id ? { ...p, ...updatedProduct } : p))
+    );
   };
-
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
       .then((prod) => setProducts(prod));
   }, []);
+
+  useEffect(() => {
+    const nuevoOrden = products.sort((a, b) => {
+      if (menorAMayor === true) {
+        return a.price - b.price;
+      } else {
+        return b.price - a.price;
+      }
+    });
+
+    setProducts(nuevoOrden);
+  }, [menorAMayor]);
 
   return (
     <div>
@@ -48,17 +62,31 @@ function App() {
         <Login />
       </header>
       <main>
-                <Slider />
-                <article className="products">
-                    {products
-                        .filter(prod => prod.title.toLocaleLowerCase().includes(searchText.toLocaleLowerCase()))
-                        .map(p => (
-                            <ProductCard p={p} key={p.id} onDelete={handleDeleteProduct} onEdit={handleEditProduct} onAddToCart={handleAddToCart} />
-                        ))}
-                </article>
-                <Cart cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} />
-            </main>
-        </div>
+        <Slider />
+        <article className="products">
+          {products
+            .filter((prod) =>
+              prod.title
+                .toLocaleLowerCase()
+                .includes(searchText.toLocaleLowerCase())
+            )
+            .map((p) => (
+              <ProductCard
+                p={p}
+                key={p.id}
+                onDelete={handleDeleteProduct}
+                onEdit={handleEditProduct}
+                onAddToCart={handleAddToCart}
+              />
+            ))}
+
+          <button onClick={() => setMenorAMayor(!menorAMayor)}>
+            Cambiar orden
+          </button>
+        </article>
+        <Cart cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} />
+      </main>
+    </div>
   );
 }
 
