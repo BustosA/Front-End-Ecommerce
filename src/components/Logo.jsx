@@ -1,10 +1,9 @@
-import React from "react";
+import "./Logo.css";
 function Logo() {
   return (
-    <div>
+    <div className="conteiner-logo">
       <svg
-        width="55"
-        height="59"
+        className="logo"
         viewBox="0 0 55 59"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -61,6 +60,10 @@ function Logo() {
           </clipPath>
         </defs>
       </svg>
+      <h1 className="hola">
+        <span>Shop</span>
+        <span>Market</span>
+      </h1>
     </div>
   );
 }

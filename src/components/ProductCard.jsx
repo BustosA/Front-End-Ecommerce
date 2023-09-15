@@ -17,30 +17,29 @@ function ProductCard({ p, onDelete, onEdit, onAddToCart }) {
   };
 
   if (isEditing) {
-    return <EditProduct product={p} onSave={handleSaveEdit} onCancel={() => setIsEditing(false)} />;
+    return (
+      <EditProduct
+        product={p}
+        onSave={handleSaveEdit}
+        onCancel={() => setIsEditing(false)}
+      />
+    );
   }
 
   return (
     <article className="products">
-      <h3>{p.title}</h3>
-      <div style={{ display: "flex" }}>
-        <img src={p.image} alt={p.title} style={{ width: "50%" }} />
-        <div>
-          <p>{p.category}</p>
-          <p>{p.price}</p>
-          <button onClick={() => onAddToCart(p)}>Añadir al Carrito</button>
-        </div>
+      <div className="product-image-container">
+        <img src={p.image} alt={p.title} />
       </div>
-      {isFullDescription ? (
-        <span>
-          {p.description} <MdExpandLess size={27} onClick={handleExpand} />
-        </span>
-      ) : (
-        <span>
-          {p.description.slice(0, 40)}...{" "}
-          <MdExpandMore size={27} onClick={handleExpand} />
-        </span>
-      )}
+      <h3 className="h3-products">{p.title}</h3>
+      <span>{p.description.slice(0, 100)}... </span>
+      <span className="category">{p.category}</span>
+      <div className="div-cart">
+        <p className="price">${p.price}</p>
+        <button className="add-to-cart" onClick={() => onAddToCart(p)}>
+          Añadir al Carrito
+        </button>
+      </div>
     </article>
   );
 }

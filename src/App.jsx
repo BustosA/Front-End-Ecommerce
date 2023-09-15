@@ -1,6 +1,6 @@
-// App.jsx
 import { useEffect, useState } from "react";
 import "./App.css";
+import "./components/Reset.css";
 import ProductCard from "./components/ProductCard";
 import SearchBar from "./components/SearchBar";
 import Logo from "./components/Logo";
@@ -13,6 +13,9 @@ function App() {
   const [searchText, setSearchText] = useState("");
   const [cartItems, setCartItems] = useState([]);
   const [menorAMayor, setMenorAMayor] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1); // Inicializa en 1 página por defecto
+  const productsPerPage = 20; // Puedes ajustar este valor según tus necesidades
 
   const handleAddToCart = (product) => {
     setCartItems((prevItems) => [...prevItems, product]);
@@ -36,11 +39,26 @@ function App() {
     );
   };
 
+  const goToNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
+  };
+
+  const goToPrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
+  };
+
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
+    fetch(`https://fakestoreapi.com/products?limit=${productsPerPage}&page=5`)
       .then((res) => res.json())
-      .then((prod) => setProducts(prod));
-  }, []);
+      .then((data) => {
+        setProducts(data);
+        setTotalPages(data.totalPages);
+      });
+  }, [currentPage]);
 
   useEffect(() => {
     const nuevoOrden = products.sort((a, b) => {
@@ -51,39 +69,52 @@ function App() {
       }
     });
 
-    setProducts(nuevoOrden);
+    setProducts([...nuevoOrden]);
   }, [menorAMayor]);
 
   return (
     <div>
       <header>
-        <Logo />
-        <SearchBar onChangeText={handleChangeText} />
-        <Login />
+        <div className="background">
+          <Logo />
+          <SearchBar onChangeText={handleChangeText} />
+          <Login />
+        </div>
       </header>
-      <main>
+      <main className="main">
         <Slider />
-        <article className="products">
-          {products
-            .filter((prod) =>
-              prod.title
-                .toLocaleLowerCase()
-                .includes(searchText.toLocaleLowerCase())
-            )
-            .map((p) => (
-              <ProductCard
-                p={p}
-                key={p.id}
-                onDelete={handleDeleteProduct}
-                onEdit={handleEditProduct}
-                onAddToCart={handleAddToCart}
-              />
-            ))}
+        <div className="div-article">
+          <article className="products">
+            {products
+              .filter((prod) =>
+                prod.title
+                  .toLocaleLowerCase()
+                  .includes(searchText.toLocaleLowerCase())
+              )
+              .map((p) => (
+                <ProductCard
+                  p={p}
+                  key={p.id}
+                  onDelete={handleDeleteProduct}
+                  onEdit={handleEditProduct}
+                  onAddToCart={handleAddToCart}
+                />
+              ))}
 
-          <button onClick={() => setMenorAMayor(!menorAMayor)}>
-            Cambiar orden
+            <button onClick={() => setMenorAMayor(!menorAMayor)}>
+              Cambiar orden
+            </button>
+          </article>
+        </div>
+
+        <div className="pagination">
+          <button onClick={goToPrevPage} disabled={currentPage === 1}>
+            Anterior
           </button>
-        </article>
+          <button onClick={goToNextPage} disabled={currentPage === totalPages}>
+            Siguiente
+          </button>
+        </div>
         <Cart cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} />
       </main>
     </div>

@@ -1,18 +1,37 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+@import url(./components/Reset.css);
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
 }
-.products{
+.div-article {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.products {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 2rem;
+  gap: 1rem;
 }
 
-header {
+.background {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background: linear-gradient(to right, #fb1071, #fb3b4c, #fd9823);
+  z-index: 1;
+  height: 10%;
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 840px;
+  background: var(--gradient);
+  z-index: -1;
 }

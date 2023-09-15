@@ -1,3 +1,13 @@
+.login {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 15%;
+}
 .login svg {
+  color: white;
+}
+.icon-text {
+  font-size: 12px;
   color: white;
 }

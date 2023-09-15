@@ -1,0 +1,20 @@
+.conteiner-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 0;
+}
+.logo {
+  width: 3.5rem;
+  height: 3.5rem;
+  padding-right: 0.5rem;
+}
+.hola {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 0.5rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
