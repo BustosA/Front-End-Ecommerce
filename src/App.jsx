@@ -7,15 +7,21 @@ import Logo from "./components/Logo";
 import Login from "./components/Login";
 import Slider from "./components/Slider";
 import Cart from "./components/Cart";
+import CategoryFilter from "./components/CategoryFilter";
+import SortDropdown from "./components/SortDropdown";
 
 function App() {
   const [products, setProducts] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [cartItems, setCartItems] = useState([]);
-  const [menorAMayor, setMenorAMayor] = useState(true);
+  const [sortOrder, setSortOrder] = useState("default");
+
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
+
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1); // Inicializa en 1 página por defecto
-  const productsPerPage = 20; // Puedes ajustar este valor según tus necesidades
+  const [totalPages, setTotalPages] = useState(1);
+  const productsPerPage = 20;
 
   const handleAddToCart = (product) => {
     setCartItems((prevItems) => [...prevItems, product]);
@@ -61,16 +67,34 @@ function App() {
   }, [currentPage]);
 
   useEffect(() => {
-    const nuevoOrden = products.sort((a, b) => {
-      if (menorAMayor === true) {
-        return a.price - b.price;
-      } else {
-        return b.price - a.price;
-      }
-    });
+    fetch("https://fakestoreapi.com/products/categories")
+      .then(response => response.json())
+      .then(data => setCategories(data))
+  }, []);
 
-    setProducts([...nuevoOrden]);
-  }, [menorAMayor]);
+  useEffect(() => {
+    let sortedProducts = [...products];
+
+    switch (sortOrder) {
+      case "menorAMayor":
+        sortedProducts.sort((a, b) => a.price - b.price);
+        break;
+      case "mayorAMenor":
+        sortedProducts.sort((a, b) => b.price - a.price);
+        break;
+      case "A-Z":
+        sortedProducts.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case "Z-A":
+        sortedProducts.sort((a, b) => b.title.localeCompare(a.title));
+        break;
+      default:
+        // Dejar el array como está si es "default"
+        break;
+    }
+
+    setProducts(sortedProducts);
+  }, [sortOrder]);
 
   return (
     <div>
@@ -83,9 +107,18 @@ function App() {
       </header>
       <main className="main">
         <Slider />
+        <CategoryFilter
+          categories={categories}
+          onSelectCategory={setSelectedCategory}
+        />
+        <SortDropdown
+          onChangeSortOrder={setSortOrder}
+          currentSortOrder={sortOrder}
+        />
         <div className="div-article">
           <article className="products">
             {products
+              .filter(prod => !selectedCategory || prod.category === selectedCategory)
               .filter((prod) =>
                 prod.title
                   .toLocaleLowerCase()
@@ -100,10 +133,6 @@ function App() {
                   onAddToCart={handleAddToCart}
                 />
               ))}
-
-            <button onClick={() => setMenorAMayor(!menorAMayor)}>
-              Cambiar orden
-            </button>
           </article>
         </div>
 
