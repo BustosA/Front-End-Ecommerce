@@ -35,3 +35,23 @@ header::before {
   background: var(--gradient);
   z-index: -1;
 }
+
+footer {
+  padding: 0;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid rgb(0, 0, 0);
+  align-items: center;
+}
+
+footer p {
+  margin: 0;
+  font-size: 20px;
+}
+
+@media screen and (max-width: 765px ) {
+  footer p {
+    font-size: 16px
+  }  
+}
