@@ -89,7 +89,6 @@ function App() {
         sortedProducts.sort((a, b) => b.title.localeCompare(a.title));
         break;
       default:
-        // Dejar el array como está si es "default"
         break;
     }
 
@@ -136,14 +135,14 @@ function App() {
           </article>
         </div>
 
-        <div className="pagination">
+        {/* <div className="pagination">
           <button onClick={goToPrevPage} disabled={currentPage === 1}>
             Anterior
           </button>
           <button onClick={goToNextPage} disabled={currentPage === totalPages}>
             Siguiente
           </button>
-        </div>
+        </div> */}
         <Cart cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} />
       </main>
     </div>

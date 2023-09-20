@@ -1,4 +1,7 @@
 @import url(./components/Reset.css);
+body { 
+  background: black;
+}
 .main {
   max-width: 1200px;
   margin: 0 auto;
