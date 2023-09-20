@@ -10,7 +10,7 @@ import Cart from "./components/Cart";
 import CategoryFilter from "./components/CategoryFilter";
 import SortDropdown from "./components/SortDropdown";
 import CartIcon from "./components/CartIcon";
-import { BrowserRouter as Router, Route, Routes, Link} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -98,7 +98,7 @@ function App() {
   }, [sortOrder]);
 
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
         <Route path="/carrito" element={<Cart cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} />} />
         <Route path="/" element={
@@ -109,7 +109,6 @@ function App() {
                 <SearchBar onChangeText={handleChangeText} />
                 <div className="right-group">
                 <Login />
-                <CartIcon />
                 </div>
               </div>
             </header>
@@ -169,7 +168,7 @@ function App() {
           </>
         }/>
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 

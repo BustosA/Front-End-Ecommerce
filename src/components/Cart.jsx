@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Cart.css";
 
 function Cart({ cartItems, onRemoveFromCart }) {
@@ -18,9 +19,14 @@ function Cart({ cartItems, onRemoveFromCart }) {
               ))}
           </ul>
           <p className="cart-total">Total: ${cartItems.reduce((acc, item) => acc + item.price, 0).toFixed(2)}</p>
+          <div className="button-container">
+    <Link to="/">
+        <button className="cart-button">Volver a la página inicial</button>
+    </Link>
+</div>
+
       </div>
   );
 }
-
 
 export default Cart;

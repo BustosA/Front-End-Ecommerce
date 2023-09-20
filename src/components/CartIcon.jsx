@@ -1,11 +1,12 @@
 import React from "react";
 import "./CartIcon.css"
+import "./Login"
 import { Link } from "react-router-dom";
 
 function CartIcon() {
   return (
     <Link to="/carrito" className="cart-icon-link">
-        <div className="cart-icon-container">
+        <div className="cart-icon-container icon">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="30"
