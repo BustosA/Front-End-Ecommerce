@@ -60,7 +60,7 @@ function Logo() {
           </clipPath>
         </defs>
       </svg>
-      <h1 className="hola">
+      <h1 className="shop-market">
         <span>Shop</span>
         <span>Market</span>
       </h1>

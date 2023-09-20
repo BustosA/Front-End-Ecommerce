@@ -10,11 +10,16 @@
   height: 3.5rem;
   padding-right: 0.5rem;
 }
-.hola {
+.shop-market {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-top: 0.5rem;
   font-size: 1.6rem;
   font-weight: 700;
+}
+@media screen and (max-width: 720px) {
+  .shop-market {
+    display: none;
+  }
 }

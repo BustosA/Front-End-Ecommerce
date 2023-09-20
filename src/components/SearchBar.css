@@ -20,3 +20,11 @@
 .search svg {
   color: #fb3b4c;
 }
+@media screen and (max-width: 720px) {
+  .search input::placeholder {
+    font-size: 0.8rem;
+  }
+  .search {
+    width: 60%;
+  }
+}

@@ -68,8 +68,8 @@ function App() {
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products/categories")
-      .then(response => response.json())
-      .then(data => setCategories(data))
+      .then((response) => response.json())
+      .then((data) => setCategories(data));
   }, []);
 
   useEffect(() => {
@@ -89,7 +89,6 @@ function App() {
         sortedProducts.sort((a, b) => b.title.localeCompare(a.title));
         break;
       default:
-        // Dejar el array como está si es "default"
         break;
     }
 
@@ -118,7 +117,10 @@ function App() {
         <div className="div-article">
           <article className="products">
             {products
-              .filter(prod => !selectedCategory || prod.category === selectedCategory)
+              .filter(
+                (prod) =>
+                  !selectedCategory || prod.category === selectedCategory
+              )
               .filter((prod) =>
                 prod.title
                   .toLocaleLowerCase()
@@ -147,12 +149,23 @@ function App() {
         <Cart cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} />
       </main>
       <footer>
-        <p>Para más información contáctanos en las siguientes redes: <a href="https://www.instagram.com" target="_blank" >Instagram</a>, <a href="https://web.whatsapp.com" target="_blank" >whatsapp</a> y <a href="https://twitter.com" target="_blank">twitter</a> 
-        </p>  
-      </footer> 
+        <p>
+          Para más información contáctanos en las siguientes redes:{" "}
+          <a href="https://www.instagram.com" target="_blank" rel="noreferrer">
+            Instagram
+          </a>
+          ,{" "}
+          <a href="https://web.whatsapp.com" target="_blank" rel="noreferrer">
+            whatsapp
+          </a>{" "}
+          y{" "}
+          <a href="https://twitter.com" target="_blank" rel="noreferrer">
+            twitter
+          </a>
+        </p>
+      </footer>
     </div>
- 
- );
+  );
 }
 
 export default App;

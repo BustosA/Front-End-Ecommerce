@@ -31,7 +31,7 @@ header::before {
   top: 0;
   left: 0;
   right: 0;
-  bottom: 840px;
+  bottom: 87%;
   background: var(--gradient);
   z-index: -1;
 }
@@ -50,8 +50,8 @@ footer p {
   font-size: 20px;
 }
 
-@media screen and (max-width: 765px ) {
+@media screen and (max-width: 765px) {
   footer p {
-    font-size: 16px
-  }  
+    font-size: 16px;
+  }
 }
