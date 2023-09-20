@@ -145,8 +145,13 @@ function App() {
         </div> */}
         <Cart cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} />
       </main>
+      <footer>
+        <p>Para más información contáctanos en las siguientes redes: <a href="https://www.instagram.com" target="_blank" >Instagram</a>, <a href="https://web.whatsapp.com" target="_blank" >whatsapp</a> y <a href="https://twitter.com" target="_blank">twitter</a> 
+        </p>  
+      </footer> 
     </div>
-  );
+ 
+ );
 }
 
 export default App;
