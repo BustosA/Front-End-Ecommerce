@@ -9,6 +9,8 @@ import Slider from "./components/Slider";
 import Cart from "./components/Cart";
 import CategoryFilter from "./components/CategoryFilter";
 import SortDropdown from "./components/SortDropdown";
+import CartIcon from "./components/CartIcon";
+import { BrowserRouter as Router, Route, Routes, Link} from "react-router-dom";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -68,8 +70,8 @@ function App() {
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products/categories")
-      .then(response => response.json())
-      .then(data => setCategories(data))
+      .then((response) => response.json())
+      .then((data) => setCategories(data));
   }, []);
 
   useEffect(() => {
@@ -96,46 +98,50 @@ function App() {
   }, [sortOrder]);
 
   return (
-    <div>
-      <header>
-        <div className="background">
-          <Logo />
-          <SearchBar onChangeText={handleChangeText} />
-          <Login />
-        </div>
-      </header>
-      <main className="main">
-        <Slider />
-        <CategoryFilter
-          categories={categories}
-          onSelectCategory={setSelectedCategory}
-        />
-        <SortDropdown
-          onChangeSortOrder={setSortOrder}
-          currentSortOrder={sortOrder}
-        />
-        <div className="div-article">
-          <article className="products">
-            {products
-              .filter(prod => !selectedCategory || prod.category === selectedCategory)
-              .filter((prod) =>
-                prod.title
-                  .toLocaleLowerCase()
-                  .includes(searchText.toLocaleLowerCase())
-              )
-              .map((p) => (
-                <ProductCard
-                  p={p}
-                  key={p.id}
-                  onDelete={handleDeleteProduct}
-                  onEdit={handleEditProduct}
-                  onAddToCart={handleAddToCart}
-                />
-              ))}
-          </article>
-        </div>
+    <Router>
+      <Routes>
+        <Route path="/carrito" element={<Cart cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} />} />
+        <Route path="/" element={
+          <>
+            <header>
+              <div className="background">
+                <Logo />
+                <SearchBar onChangeText={handleChangeText} />
+                <div className="right-group">
+                <Login />
+                <CartIcon />
+                </div>
+              </div>
+            </header>
+            <main className="main">
+              <Slider />
+              <CategoryFilter categories={categories} onSelectCategory={setSelectedCategory} />
+              <SortDropdown onChangeSortOrder={setSortOrder} currentSortOrder={sortOrder} />
+              <div className="div-article">
+                <article className="products">
+                  {products
+                    .filter(
+                      (prod) =>
+                        !selectedCategory || prod.category === selectedCategory
+                    )
+                    .filter((prod) =>
+                      prod.title
+                        .toLocaleLowerCase()
+                        .includes(searchText.toLocaleLowerCase())
+                    )
+                    .map((p) => (
+                      <ProductCard
+                        p={p}
+                        key={p.id}
+                        onDelete={handleDeleteProduct}
+                        onEdit={handleEditProduct}
+                        onAddToCart={handleAddToCart}
+                      />
+                    ))}
+                </article>
+              </div>
 
-        {/* <div className="pagination">
+              {/* <div className="pagination">
           <button onClick={goToPrevPage} disabled={currentPage === 1}>
             Anterior
           </button>
@@ -143,15 +149,28 @@ function App() {
             Siguiente
           </button>
         </div> */}
-        <Cart cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} />
-      </main>
-      <footer>
-        <p>Para más información contáctanos en las siguientes redes: <a href="https://www.instagram.com" target="_blank" >Instagram</a>, <a href="https://web.whatsapp.com" target="_blank" >whatsapp</a> y <a href="https://twitter.com" target="_blank">twitter</a> 
-        </p>  
-      </footer> 
-    </div>
- 
- );
+            </main>
+            <footer>
+              <p>
+                Para más información contáctanos en las siguientes redes:{" "}
+                <a href="https://www.instagram.com" target="_blank">
+                  Instagram
+                </a>
+                ,{" "}
+                <a href="https://web.whatsapp.com" target="_blank">
+                  whatsapp
+                </a>{" "}
+                y{" "}
+                <a href="https://twitter.com" target="_blank">
+                  twitter
+                </a>
+              </p>
+              </footer>
+          </>
+        }/>
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;

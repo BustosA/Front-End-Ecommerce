@@ -28,6 +28,12 @@ body {
   height: 10%;
 }
 
+.right-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 header::before {
   content: "";
   position: absolute;
@@ -40,17 +46,28 @@ header::before {
 }
 
 footer {
-  padding: 0;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  border-top: 1px solid rgb(0, 0, 0);
-  align-items: center;
+  background-color: #ffffff;
+  padding: 40px 0;
+  color: black;
+  font-size: 16px;
+  margin-top: 40px;
 }
 
 footer p {
+  text-align: center;
   margin: 0;
-  font-size: 20px;
+  padding-bottom: 15px; 
+}
+
+footer a {
+  color: black;
+  text-decoration: none;
+  margin: 0 10px; 
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #00aaff;
 }
 
 @media screen and (max-width: 765px ) {
