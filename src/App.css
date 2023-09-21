@@ -25,6 +25,12 @@
   height: 10%;
 }
 
+.right-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 header::before {
   content: "";
   position: absolute;
@@ -43,6 +49,7 @@ footer {
   justify-content: center;
   border-top: 1px solid rgb(0, 0, 0);
   align-items: center;
+  margin-top: 10px;
 }
 
 footer p {

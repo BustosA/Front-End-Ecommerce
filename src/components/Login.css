@@ -15,6 +15,7 @@
 }
 .icon {
   margin: 0 0.5em;
+  text-decoration: none;
 }
 span {
   list-style: none;
@@ -48,3 +49,4 @@ span {
     display: none;
   }
 }
+
