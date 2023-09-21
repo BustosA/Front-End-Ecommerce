@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Login.css";
 import CartIcon from "./CartIcon";
-import Cart from "./Cart";
 
 function Login() {
   const [isDisabled, setIsDisabled] = useState(false);
