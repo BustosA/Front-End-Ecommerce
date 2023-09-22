@@ -12,21 +12,21 @@ function Slider() {
       <div className="carousel-inner">
         <div className="carousel-item active">
           <img
-            src="../../public/flyer1.jpg"
+            src="Proyecto-Final-UTN\public\flyer1.jpg"
             className="d-block w-100"
             alt="Descripción de la imagen 1"
           />
         </div>
         <div className="carousel-item">
           <img
-            src="../../public/flyer2.jpg"
+            src="Proyecto-Final-UTN\public\flyer2.jpg"
             className="d-block w-100"
             alt="Descripción de la imagen 2"
           />
         </div>
         <div className="carousel-item">
           <img
-            src="../../public/flyer3.jpg"
+            src="Proyecto-Final-UTN\public\flyer3.jpg"
             className="d-block w-100"
             alt="Descripción de la imagen 3"
           />
