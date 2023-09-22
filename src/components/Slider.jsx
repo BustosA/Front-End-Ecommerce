@@ -1,5 +1,5 @@
-import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import "./Slider.css";
 
 function Slider() {
@@ -12,21 +12,21 @@ function Slider() {
       <div className="carousel-inner">
         <div className="carousel-item active">
           <img
-            src="Proyecto-Final-UTN\public\flyer1.jpg"
+            src="/flyer1.jpg"
             className="d-block w-100"
             alt="Descripción de la imagen 1"
           />
         </div>
         <div className="carousel-item">
           <img
-            src="Proyecto-Final-UTN\public\flyer2.jpg"
+            src="/flyer2.jpg"
             className="d-block w-100"
             alt="Descripción de la imagen 2"
           />
         </div>
         <div className="carousel-item">
           <img
-            src="Proyecto-Final-UTN\public\flyer3.jpg"
+            src="/flyer3.jpg"
             className="d-block w-100"
             alt="Descripción de la imagen 3"
           />
