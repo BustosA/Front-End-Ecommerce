@@ -11,6 +11,7 @@ import CategoryFilter from "./components/CategoryFilter";
 import SortDropdown from "./components/SortDropdown";
 import CartIcon from "./components/CartIcon";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import UpdateProduct from "./components/UpdateProduct";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -60,9 +61,11 @@ function App() {
   };
 
   useEffect(() => {
-    fetch(`https://fakestoreapi.com/products?limit=${productsPerPage}&page=5`)
+    // fetch(`https://fakestoreapi.com/products?limit=${productsPerPage}&page=5`)
+      fetch("http://localhost:3000/products")
       .then((res) => res.json())
       .then((data) => {
+        console.log(data)
         setProducts(data);
         setTotalPages(data.totalPages);
       });
@@ -124,7 +127,7 @@ function App() {
                         !selectedCategory || prod.category === selectedCategory
                     )
                     .filter((prod) =>
-                      prod.title
+                      prod.name
                         .toLocaleLowerCase()
                         .includes(searchText.toLocaleLowerCase())
                     )
@@ -167,6 +170,7 @@ function App() {
               </footer>
           </>
         }/>
+        <Route path="/product/:id" element={<UpdateProduct />} />
       </Routes>
     </BrowserRouter>
   );
