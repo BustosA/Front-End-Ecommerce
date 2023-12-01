@@ -86,12 +86,6 @@ function App() {
       case "mayorAMenor":
         sortedProducts.sort((a, b) => b.price - a.price);
         break;
-      case "A-Z":
-        sortedProducts.sort((a, b) => a.title.localeCompare(b.title));
-        break;
-      case "Z-A":
-        sortedProducts.sort((a, b) => b.title.localeCompare(a.title));
-        break;
       default:
         break;
     }
