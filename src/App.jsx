@@ -71,7 +71,7 @@ function App() {
   }, [currentPage]);
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products/categories")
+    fetch("http://localhost:3000/products/categories")
       .then((response) => response.json())
       .then((data) => setCategories(data));
   }, []);
