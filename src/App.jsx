@@ -9,7 +9,7 @@ import Slider from "./components/Slider";
 import Cart from "./components/Cart";
 import CategoryFilter from "./components/CategoryFilter";
 import SortDropdown from "./components/SortDropdown";
-import CartIcon from "./components/CartIcon";
+import AddProductForm from "./components/AddProductForm";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import UpdateProduct from "./components/UpdateProduct";
 
@@ -38,6 +38,10 @@ function App() {
     setSearchText(e.target.value);
   };
 
+  const handleAddProduct = (newProduct) => {
+    setProducts((prevProducts) => [...prevProducts, newProduct]);
+  };
+
   const handleDeleteProduct = (id) => {
     setProducts(products.filter((p) => p.id !== id));
   };
@@ -59,6 +63,8 @@ function App() {
       setCurrentPage((prevPage) => prevPage - 1);
     }
   };
+
+  
 
   useEffect(() => {
       fetch("http://localhost:3000/products")
@@ -112,6 +118,7 @@ function App() {
               <Slider />
               <CategoryFilter categories={categories} onSelectCategory={setSelectedCategory} />
               <SortDropdown onChangeSortOrder={setSortOrder} currentSortOrder={sortOrder} />
+              <AddProductForm onAddProduct={handleAddProduct} />
               <div className="div-article">
                 <article className="products">
                   {products

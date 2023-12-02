@@ -17,6 +17,24 @@ function ProductCard({ p, onDelete, onEdit, onAddToCart }) {
     setIsEditing(false);
   };
 
+  const handleDelete = async (productId) => {
+    try {
+      const response = await fetch(`http://localhost:3000/products/${productId}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        // Si la respuesta es exitosa, invocamos la función de eliminación del padre
+        onDelete(productId);
+        console.log(`Producto con ID ${productId} eliminado con éxito`);
+      } else {
+        console.error(`Error al eliminar el producto con ID ${productId}`);
+      }
+    } catch (error) {
+      console.error("Error al intentar eliminar el producto:", error);
+    }
+  };
+
   if (isEditing) {
     return (
       <EditProduct
@@ -36,9 +54,10 @@ function ProductCard({ p, onDelete, onEdit, onAddToCart }) {
       <span>{p.description.slice(0, 100)}... </span>
       <div>
         <span className="category">{p.category}</span>
-        <button>
+        <button className="button-card-update">
           <Link to={"/product/"+p.id}>Actualizar</Link>
         </button>
+        <button onClick={() => handleDelete(p.id)} className="button-card-update" >Eliminar</button>
       </div>
       <div className="div-cart">
         <p className="price">${p.price}</p>

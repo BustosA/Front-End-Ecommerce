@@ -46,3 +46,16 @@
   border-radius: 20px;
   padding: 0.4rem;
 }
+
+.button-card-update {
+  padding: 5px;
+  color: #000;
+  background-color: #00bcd4;
+  border-radius: 100px;
+}
+
+.button-card-update a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
