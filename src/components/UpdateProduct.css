@@ -1,3 +1,55 @@
-.divUpdate input {
-    border: 1px solid rgb(0, 0, 0)
-}
+/* UpdateProduct.css */
+
+.divUpdate {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  .divUpdate form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .divUpdate label {
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  .divUpdate input {
+    margin-bottom: 16px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .divUpdate button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .divUpdate button:hover {
+    background-color: #45a049;
+  }
+  
+  .back-to-home {
+    margin-top: 20px;
+  }
+  
+  .back-to-home a {
+    color: #4caf50;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .back-to-home a:hover {
+    text-decoration: underline;
+  }
+  

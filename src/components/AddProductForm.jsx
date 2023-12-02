@@ -36,7 +36,6 @@ function AddProductForm({ onAddProduct }) {
           Nombre:
           <input type="text" name="name" value={newProduct.name} onChange={handleChange} required />
         </label>
-        {/* Repite este patrón para otros campos del producto */}
         <label>
           Descripción:
           <input name="description" value={newProduct.description} onChange={handleChange} required />

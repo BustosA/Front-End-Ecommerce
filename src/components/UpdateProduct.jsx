@@ -1,5 +1,5 @@
 import "./UpdateProduct.css"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 
 const UpdateProduct = () => {
 
@@ -76,7 +76,11 @@ const UpdateProduct = () => {
                     <input id="update-product-img" type="text" name="image_url"/>
                 </div>
 
-                <button type="submit">Enviar</button>                                                                
+                <button type="submit">Enviar</button> 
+
+                <div className="back-to-home">
+  <Link to="/">Volver a la página principal</Link>
+</div>                                                               
             </form>
         </div>
     )
