@@ -54,6 +54,7 @@ function ProductCard({ p, onDelete, onEdit, onAddToCart }) {
       <span>{p.description.slice(0, 100)}... </span>
       <div>
         <span className="category">{p.category}</span>
+        <span className="stock">Stock: {p.stock}</span>
         <button className="button-card-update">
           <Link to={"/product/"+p.id}>Actualizar</Link>
         </button>

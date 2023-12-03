@@ -118,7 +118,6 @@ function App() {
               <Slider />
               <CategoryFilter categories={categories} onSelectCategory={setSelectedCategory} />
               <SortDropdown onChangeSortOrder={setSortOrder} currentSortOrder={sortOrder} />
-              <AddProductForm onAddProduct={handleAddProduct} />
               <div className="div-article">
                 <article className="products">
                   {products
@@ -142,7 +141,6 @@ function App() {
                     ))}
                 </article>
               </div>
-
               {/* <div className="pagination">
           <button onClick={goToPrevPage} disabled={currentPage === 1}>
             Anterior
@@ -152,6 +150,7 @@ function App() {
           </button>
         </div> */}
             </main>
+            <AddProductForm onAddProduct={handleAddProduct} />
             <footer>
               <p>
                 Para más información contáctanos en las siguientes redes:{" "}
