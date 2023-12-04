@@ -25,9 +25,12 @@ function AddProductForm({ onAddProduct }) {
                 "http://localhost:3000/products",
                 newProduct
             );
-            onAddProduct(newProduct);
             const newProductId = response.data.id;
 
+            // Primero, llamamos onAddProduct con el estado actualizado
+            onAddProduct({ ...newProduct, id: newProductId });
+
+            // Luego, restablecemos el estado
             setNewProduct({
                 name: "",
                 description: "",
@@ -36,7 +39,7 @@ function AddProductForm({ onAddProduct }) {
                 category: "",
                 image_url: "",
             });
-            onAddProduct({ ...newProduct, id: newProductId });
+
             console.log("Producto agregado correctamente:", response.data);
             window.location.reload();
         } catch (error) {
@@ -89,13 +92,19 @@ function AddProductForm({ onAddProduct }) {
                 </label>
                 <label>
                     Categoría:
-                    <input
-                        type="text"
-                        name="category"
+                    <select name="category"
                         value={newProduct.category}
                         onChange={handleChange}
-                        required
-                    />
+                        required>
+                        <option value="Procesadores">Procesadores</option>
+                        <option value="Motherboards">Motherboards</option>
+                        <option value="Placas de videos">Placas de videos</option>
+                        <option value="CPU Coolers">CPU Coolers</option>
+                        <option value="Fuentes de alimentación">Fuentes de alimentación</option>
+                        <option value="Memorias RAM">Memorias RAM</option>
+                        <option value="Perifericos">Periféricos</option>
+                        <option value="Almacenamiento">Almacenamiento</option>
+                    </select>
                 </label>
                 <label>
                     URL de la imagen:
