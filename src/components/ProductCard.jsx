@@ -1,5 +1,5 @@
 import { MdExpandLess, MdExpandMore } from "react-icons/md";
-import EditProduct from "./EditProduct";
+import Update from "./EditProduct";
 import "./ProductCard.css";
 import { useState } from "react";
 import { Link } from "react-router-dom"

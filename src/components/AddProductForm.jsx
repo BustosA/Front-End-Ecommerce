@@ -25,11 +25,9 @@ function AddProductForm({ onAddProduct }) {
                 "http://localhost:3000/products",
                 newProduct
             );
-
-            // Llamada a la función proporcionada por el componente padre
             onAddProduct(newProduct);
+            const newProductId = response.data.id;
 
-            // Limpiar el formulario después de agregar el producto
             setNewProduct({
                 name: "",
                 description: "",
@@ -38,8 +36,9 @@ function AddProductForm({ onAddProduct }) {
                 category: "",
                 image_url: "",
             });
-
+            onAddProduct({ ...newProduct, id: newProductId });
             console.log("Producto agregado correctamente:", response.data);
+            window.location.reload();
         } catch (error) {
             console.error("Error al agregar el producto:", error);
         }
