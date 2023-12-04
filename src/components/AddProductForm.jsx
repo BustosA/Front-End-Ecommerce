@@ -19,19 +19,16 @@ function AddProductForm({ onAddProduct }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         try {
             const response = await axios.post(
                 "http://localhost:3000/products",
                 newProduct
             );
-    
-            // Utiliza la información de la respuesta del servidor en lugar de newProduct
-            const addedProduct = response.data;
-    
-            // Llamada a la función proporcionada por el componente padre con la información correcta
-            onAddProduct(addedProduct);
-    
+
+            // Llamada a la función proporcionada por el componente padre
+            onAddProduct(newProduct);
+
             // Limpiar el formulario después de agregar el producto
             setNewProduct({
                 name: "",
@@ -41,8 +38,8 @@ function AddProductForm({ onAddProduct }) {
                 category: "",
                 image_url: "",
             });
-    
-            console.log("Producto agregado correctamente:", addedProduct);
+
+            console.log("Producto agregado correctamente:", response.data);
         } catch (error) {
             console.error("Error al agregar el producto:", error);
         }
