@@ -24,7 +24,6 @@ function ProductCard({ p, onDelete, onEdit, onAddToCart }) {
       });
 
       if (response.ok) {
-        // Si la respuesta es exitosa, invocamos la función de eliminación del padre
         onDelete(productId);
         console.log(`Producto con ID ${productId} eliminado con éxito`);
       } else {

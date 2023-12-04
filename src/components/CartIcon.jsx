@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function CartIcon() {
   return (
-    <Link to="/carrito" className="cart-icon-link">
+    /*<Link to="/carrito" className="cart-icon-link"> </Link>*/
         <div className="cart-icon-container icon">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +19,7 @@ function CartIcon() {
         </svg>
         <span className="icon-text">Carrito</span>
       </div>
-    </Link>
+    
   );
 }
 

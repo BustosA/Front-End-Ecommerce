@@ -24,7 +24,6 @@ function App() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const productsPerPage = 20;
 
   const handleAddToCart = (product) => {
     setCartItems((prevItems) => [...prevItems, product]);
@@ -64,10 +63,10 @@ function App() {
     }
   };
 
-  
+
 
   useEffect(() => {
-      fetch("http://localhost:3000/products")
+    fetch("http://localhost:3000/products")
       .then((res) => res.json())
       .then((data) => {
         console.log(data)
@@ -110,7 +109,7 @@ function App() {
                 <Logo />
                 <SearchBar onChangeText={handleChangeText} />
                 <div className="right-group">
-                <Login />
+                  <Login />
                 </div>
               </div>
             </header>
@@ -133,22 +132,15 @@ function App() {
                     .map((p) => (
                       <ProductCard
                         p={p}
-                        key={p.id}
-                        onDelete={handleDeleteProduct}
-                        onEdit={handleEditProduct}
-                        onAddToCart={handleAddToCart}
+                        key={p.id}  // Asegúrate de proporcionar una clave única, asumiendo que p.id es único
+                        onDelete={() => handleDeleteProduct(p.id)}
+                        onEdit={(updatedProduct) => handleEditProduct(p.id, updatedProduct)}
+                        onAddToCart={() => handleAddToCart(p)}
                       />
                     ))}
                 </article>
+
               </div>
-              {/* <div className="pagination">
-          <button onClick={goToPrevPage} disabled={currentPage === 1}>
-            Anterior
-          </button>
-          <button onClick={goToNextPage} disabled={currentPage === totalPages}>
-            Siguiente
-          </button>
-        </div> */}
             </main>
             <AddProductForm onAddProduct={handleAddProduct} />
             <footer>
@@ -166,9 +158,9 @@ function App() {
                   twitter
                 </a>
               </p>
-              </footer>
+            </footer>
           </>
-        }/>
+        } />
         <Route path="/product/:id" element={<UpdateProduct />} />
       </Routes>
     </BrowserRouter>
